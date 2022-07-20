@@ -20,8 +20,8 @@
  *    ['Array', 'Number', 'string'], 'Date'    => -1
  *    [0, 1, 2, 3, 4, 5], 5    => 5
  */
-function findElement(/* arr, value */) {
-  throw new Error('Not implemented');
+function findElement(arr, value) {
+  return arr.findIndex((el) => el === value);
 }
 
 /**
@@ -35,8 +35,16 @@ function findElement(/* arr, value */) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const arr = [1];
+  arr[len - 1] = 1;
+  arr.map((e, i) => {
+    if (i < (len - 1)) {
+      arr[i + 1] = arr[i] + 2;
+    }
+    return arr[i];
+  });
+  return arr;
 }
 
 
@@ -52,8 +60,9 @@ function generateOdds(/* len */) {
  *    [0, 1, 2, 3, 4, 5] => [0, 1, 2, 3, 4, 5,   0, 1, 2, 3, 4, 5]
  *    [] => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+function doubleArray(arr) {
+  arr.map((val) => arr.push(val));
+  return arr;
 }
 
 
@@ -68,8 +77,15 @@ function doubleArray(/* arr */) {
  *    [-1, 2, -5, -4, 0] => [ 2 ]
  *    [] => []
  */
-function getArrayOfPositives(/* arr */) {
-  throw new Error('Not implemented');
+function getArrayOfPositives(arr) {
+  const result = [];
+  arr.map((el) => {
+    if (el > 0) {
+      result.push(el);
+    }
+    return true;
+  });
+  return result;
 }
 
 /**
@@ -83,8 +99,15 @@ function getArrayOfPositives(/* arr */) {
  *    [ 1, 2, 3, 4, 5 ] => []
  *    [ 'cat, 'dog', 'raccoon' ] => [ 'cat', 'dog', 'raccoon' ]
  */
-function getArrayOfStrings(/* arr */) {
-  throw new Error('Not implemented');
+function getArrayOfStrings(arr) {
+  const result = [];
+  arr.map((el) => {
+    if (typeof el === 'string') {
+      result.push(el);
+    }
+    return true;
+  });
+  return result;
 }
 
 /**
@@ -100,8 +123,15 @@ function getArrayOfStrings(/* arr */) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  const result = [];
+  arr.map((el) => {
+    if (el) {
+      result.push(el);
+    }
+    return true;
+  });
+  return result;
 }
 
 /**
@@ -115,8 +145,10 @@ function removeFalsyValues(/* arr */) {
  *    => [ 'PERMANENT-INTERNSHIP', 'GLUTINOUS-SHRIEK', 'MULTIPLICATIVE-ELEVATION' ],
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
-function getUpperCaseStrings(/* arr */) {
-  throw new Error('Not implemented');
+function getUpperCaseStrings(arr) {
+  const result = [];
+  arr.map((el) => result.push(el.toUpperCase()));
+  return result;
 }
 
 
@@ -130,8 +162,10 @@ function getUpperCaseStrings(/* arr */) {
  *    [ '', 'a', 'bc', 'def', 'ghij' ]  => [ 0, 1, 2, 3, 4 ]
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
-function getStringsLength(/* arr */) {
-  throw new Error('Not implemented');
+function getStringsLength(arr) {
+  const result = [];
+  arr.map((el) => result.push(el.length));
+  return result;
 }
 
 /**
@@ -145,8 +179,19 @@ function getStringsLength(/* arr */) {
  *    [ 1, 3, 4, 5 ], 2, 1  => [ 1, 2, 3, 4, 5 ]
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
+function insertItem(arr, item, index) {
+  const arr1 = arr.slice(0, index);
+  arr1.push(item);
+  const arr2 = arr.slice(index);
+  const result = arr1.concat(arr2);
+  result.map((e, i) => {
+    // eslint-disable-next-line no-param-reassign
+    arr[i] = e;
+    // так тут нужно мутировать исходный массив или нельзя?!
+    return e;
+  });
+
+  return result;
 }
 
 /**
